@@ -15,7 +15,11 @@ RUN apt-get install -y wget \
     file \
     unzip \
     zip \
-    openjdk-17-jdk-headless --no-install-recommends
+    openjdk-17-jdk-headless --no-install-recommends \
+    ninja-build \
+    clang \
+    cmake \
+    pkg-config
 
 RUN apt-get autoremove -y \
     && apt-get clean -y \
@@ -58,3 +62,4 @@ RUN git clone -b master https://github.com/flutter/flutter.git /sdk/flutter
 RUN ./sdk/flutter/bin/flutter --version
 ENV PATH="/sdk/flutter/bin:${PATH}"
 RUN chmod -R 777 /sdk/flutter
+RUN chown -R ${USERNAME} ${HOME}
